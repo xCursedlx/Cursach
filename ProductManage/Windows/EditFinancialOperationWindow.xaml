@@ -1,0 +1,58 @@
+﻿<Window x:Class="ProductManage.Windows.EditFinancialOperationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование операции"
+        Height="350" Width="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}"
+        FontFamily="{StaticResource PrimaryFontFamily}"
+        FontSize="14">
+
+    <Grid Margin="20" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Дата операции -->
+        <Label Content="Дата операции:" Grid.Row="0" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+        <DatePicker SelectedDate="{Binding OperationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    Grid.Row="0" Margin="130,0,0,10" Width="250" Style="{StaticResource ModernDatePickerStyle}" />
+
+        <!-- Тип операции -->
+        <Label Content="Тип операции:" Grid.Row="1" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+        <ComboBox SelectedValue="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  Grid.Row="1" Margin="130,0,0,10" Width="250"
+                  SelectedValuePath="Tag" Style="{StaticResource ModernComboBoxStyle}">
+            <ComboBoxItem Content="Доход" Tag="income" />
+            <ComboBoxItem Content="Расход" Tag="expense" />
+        </ComboBox>
+
+        <!-- Сумма -->
+        <Label Content="Сумма:" Grid.Row="2" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}" />
+        <TextBox Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" 
+                 Grid.Row="2" Margin="130,0,0,10" Width="250" Style="{StaticResource ModernTextBoxStyle}" />
+
+        <!-- Описание -->
+        <Label Content="Описание:" Grid.Row="3" VerticalAlignment="Top" Foreground="{StaticResource TextPrimaryBrush}" />
+        <TextBox Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Grid.Row="3" Margin="130,0,0,10" Height="80" Width="250" AcceptsReturn="True" TextWrapping="Wrap" 
+                 Style="{StaticResource ModernTextBoxStyle}" />
+
+        <!-- Статус -->
+        <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource ErrorBrush}" Grid.Row="4" Margin="0,10,0,0" TextWrapping="Wrap" />
+
+        <!-- Кнопки -->
+        <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Сохранить" Width="100" Margin="0 0 10 0" 
+                    Command="{Binding SaveCommand}" 
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            <Button Content="Отмена" Width="100" Command="{Binding CancelCommand}" Style="{StaticResource SecondaryButtonStyle}" />
+        </StackPanel>
+    </Grid>
+</Window>

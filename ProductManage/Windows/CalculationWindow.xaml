@@ -1,0 +1,80 @@
+﻿<Window x:Class="ProductManage.Windows.CalculationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Расчёт прибыли"
+        Height="350" Width="480"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}"
+        FontFamily="{StaticResource PrimaryFontFamily}"
+        FontSize="14">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Заголовок -->
+            <RowDefinition Height="Auto"/>
+            <!-- Период -->
+            <RowDefinition Height="Auto"/>
+            <!-- Статус -->
+            <RowDefinition Height="Auto"/>
+            <!-- Результаты -->
+            <RowDefinition Height="Auto"/>
+            <!-- Кнопки -->
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Text="Расчёт прибыли" FontSize="22" FontWeight="Bold"
+                   Foreground="{StaticResource TextPrimaryBrush}" Margin="0 0 0 20" HorizontalAlignment="Center"/>
+
+        <!-- Период -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 15" >
+            <TextBlock VerticalAlignment="Center" Text="Период с:" Foreground="{StaticResource TextSecondaryBrush}" Margin="0 0 6 0"/>
+            <DatePicker SelectedDate="{Binding StartDate}" Width="140" Style="{StaticResource ModernDatePickerStyle}" Margin="0 0 15 0"/>
+            <TextBlock VerticalAlignment="Center" Text="по:" Foreground="{StaticResource TextSecondaryBrush}" Margin="0 0 6 0"/>
+            <DatePicker SelectedDate="{Binding EndDate}" Width="140" Style="{StaticResource ModernDatePickerStyle}"/>
+        </StackPanel>
+
+        <!-- Статус -->
+        <TextBlock Grid.Row="2" Text="{Binding StatusMessage}" Foreground="{StaticResource AccentBrush}"
+                   FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0 0 0 15"/>
+
+        <!-- Результаты -->
+        <Grid Grid.Row="3" Margin="0 0 0 20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Общая прибыль:" FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" 
+            Text="{Binding Profit, StringFormat={}{0:N2} ₽}" 
+            FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}" VerticalAlignment="Center" Margin="0 8 0 0"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Доходы:" FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" Margin="0 8 0 0"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" 
+            Text="{Binding TotalIncome, StringFormat={}{0:N2} ₽}" 
+            FontWeight="Bold" Foreground="{StaticResource AccentBrush}" VerticalAlignment="Center" Margin="0 8 0 0"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Расходы:" FontWeight="SemiBold"
+                       Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" Margin="0 8 0 0"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" 
+            Text="{Binding TotalExpense, StringFormat={}{0:N2} ₽}" 
+            FontWeight="Bold" Foreground="{StaticResource ErrorBrush}" VerticalAlignment="Center" Margin="0 8 0 0"/>
+        </Grid>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Content="Рассчитать" Width="130" Margin="10 0" Command="{Binding CalculateCommand}" Style="{StaticResource PrimaryButtonStyle}"/>
+            <Button Content="Экспорт" Width="130" Margin="10 0" Command="{Binding ExportCommand}" Style="{StaticResource SecondaryButtonStyle}"/>
+            <Button Content="Закрыть" Width="130" Margin="10 0" Command="{Binding CloseCommand}" Style="{StaticResource SecondaryButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>

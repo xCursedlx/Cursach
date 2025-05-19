@@ -1,0 +1,88 @@
+﻿<Window x:Class="ProductManage.Windows.EditProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование товара"
+        Height="500" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}"
+        FontFamily="{StaticResource PrimaryFontFamily}"
+        FontSize="14">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Редактирование товара"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource TextPrimaryBrush}"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"
+                   Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Название -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                <TextBlock Text="Название*" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Product.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Style="{StaticResource ModernTextBoxStyle}"/>
+            </StackPanel>
+
+            <!-- Категория -->
+            <StackPanel Grid.Row="1" Margin="0,0,0,15">
+                <TextBlock Text="Категория (ID)" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Product.CategoryId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Style="{StaticResource ModernTextBoxStyle}"/>
+            </StackPanel>
+
+            <!-- Цена -->
+            <StackPanel Grid.Row="2" Margin="0,0,0,15">
+                <TextBlock Text="Цена*" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Product.Price, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Style="{StaticResource ModernTextBoxStyle}"/>
+            </StackPanel>
+
+            <!-- Количество -->
+            <StackPanel Grid.Row="3" Margin="0,0,0,15">
+                <TextBlock Text="Количество*" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Product.Quantity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         Style="{StaticResource ModernTextBoxStyle}"/>
+            </StackPanel>
+
+            <!-- Описание -->
+            <StackPanel Grid.Row="4">
+                <TextBlock Text="Описание" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Product.Description, UpdateSourceTrigger=PropertyChanged}"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Height="80"
+                         Style="{StaticResource ModernTextBoxStyle}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Кнопки -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="0,20,0,0">
+            <Button Content="Отмена"
+                    Width="100"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding CancelCommand}"/>
+            <Button Content="Сохранить"
+                    Width="100"
+                    Margin="10,0,0,0"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Command="{Binding SaveCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

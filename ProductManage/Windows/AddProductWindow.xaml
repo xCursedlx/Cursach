@@ -1,0 +1,100 @@
+﻿<Window x:Class="ProductManage.Windows.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавление товара"
+        Height="450" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}"
+        FontFamily="{StaticResource PrimaryFontFamily}"
+        FontSize="14">
+
+    <Window.Resources>
+        <!-- Стиль для TextBox с плейсхолдером -->
+        <Style x:Key="WatermarkTextBox" TargetType="TextBox" BasedOn="{StaticResource ModernTextBoxStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                            <TextBlock Text="{TemplateBinding Tag}"
+                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                       Margin="8,0,0,0"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False"
+                                       Visibility="Collapsed"
+                                       x:Name="WatermarkText" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="WatermarkText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="WatermarkText" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Новый товар"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource TextPrimaryBrush}"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20"
+                   Grid.Row="0"/>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Top" >
+            <!-- Название -->
+            <TextBlock Text="Название*" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
+            <TextBox Style="{StaticResource WatermarkTextBox}" Tag="Введите название"
+                     Text="{Binding Product.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+            <!-- Категория -->
+            <TextBlock Text="Категория (ID)" Foreground="{StaticResource TextSecondaryBrush}" Margin="15,15,0,5"/>
+            <TextBox Style="{StaticResource WatermarkTextBox}" Tag="Введите ID категории"
+                     Text="{Binding Product.CategoryId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+            <!-- Цена -->
+            <TextBlock Text="Цена*" Foreground="{StaticResource TextSecondaryBrush}" Margin="15,15,0,5"/>
+            <TextBox Style="{StaticResource WatermarkTextBox}" Tag="Введите цену"
+                     Text="{Binding Product.Price, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+            <!-- Количество -->
+            <TextBlock Text="Количество*" Foreground="{StaticResource TextSecondaryBrush}" Margin="15,15,0,5"/>
+            <TextBox Style="{StaticResource WatermarkTextBox}" Tag="Введите количество"
+                     Text="{Binding Product.Quantity, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+            <!-- Описание -->
+            <TextBlock Text="Описание" Foreground="{StaticResource TextSecondaryBrush}" Margin="15,15,0,5"/>
+            <TextBox Style="{StaticResource ModernTextBoxStyle}"
+                     Text="{Binding Product.Description, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True" TextWrapping="Wrap" Height="80"/>
+        </StackPanel>
+
+        <!-- Статус и кнопки -->
+        <StackPanel Grid.Row="2" Margin="0,20,0,0">
+            <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Отмена" Width="100" Margin="0,0,10,0"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding CancelCommand}" />
+
+                <Button Content="Сохранить" Width="100"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding SaveCommand}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
