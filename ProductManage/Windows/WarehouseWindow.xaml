@@ -46,7 +46,7 @@
                 <DataGridTextColumn Header="Поставщик" Binding="{Binding SupplierName}" Width="*"/>
                 <DataGridTextColumn Header="Дата поставки" Binding="{Binding DeliveryDate, StringFormat=dd.MM.yyyy}" Width="130"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="120"/>
-                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalAmount, StringFormat=C}" Width="120"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalAmount, StringFormat={}{0:N2} ₽}" Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
 

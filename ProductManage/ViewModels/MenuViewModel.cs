@@ -83,7 +83,6 @@ namespace ProductManage.ViewModels
                     AddMenuItem("Логи системы", "LogViewerWindow");
                     AddMenuItem("Расчёт прибыли", "CalculationWindow");
                     AddMenuItem("Управление поставками", "WarehouseWindow");
-                    AddMenuItem("Новая поставка", "NewSupplyWindow");
                     break;
 
                 case "accountant":
@@ -93,7 +92,6 @@ namespace ProductManage.ViewModels
 
                 case "warehouse":
                     AddMenuItem("Управление поставками", "WarehouseWindow");
-                    AddMenuItem("Новая поставка", "NewSupplyWindow");
                     break;
             }
 
@@ -141,7 +139,6 @@ namespace ProductManage.ViewModels
                 "LogViewerWindow" => new LogViewerWindow(),
                 "CalculationWindow" => new CalculationWindow(),
                 "WarehouseWindow" => new WarehouseWindow(_currentUser),
-                "NewSupplyWindow" => new NewSupplyWindow(_currentUser),
                 _ => null
             };
 

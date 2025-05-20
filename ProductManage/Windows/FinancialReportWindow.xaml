@@ -50,7 +50,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата" Binding="{Binding OperationDate, StringFormat=dd.MM.yyyy}" Width="120" SortMemberPath="OperationDate"/>
                 <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*" SortMemberPath="Description"/>
-                <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat=C}" Width="120" SortMemberPath="Amount"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat={}{0:N2} ₽}" Width="120" SortMemberPath="Amount"/>
                 <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="120" SortMemberPath="Type"/>
             </DataGrid.Columns>
         </DataGrid>
