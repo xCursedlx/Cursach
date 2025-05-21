@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Регистрация нового пользователя" FontSize="20" FontWeight="Bold" 
+        <TextBlock Text="Регистрация нового пользователя" FontSize="19" FontWeight="Bold" 
                    Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" Margin="0,0,0,20" Grid.Row="0"/>
 
         <!-- Логин -->
@@ -30,13 +30,6 @@
             <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                      Style="{StaticResource ModernTextBoxStyle}" />
         </StackPanel>
-
-        <!-- Email (если нужно, можно добавить) -->
-        <!-- <StackPanel Grid.Row="2" Margin="0,0,0,10">
-            <TextBlock Text="Email:" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,5"/>
-            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
-                     Style="{StaticResource ModernTextBoxStyle}" />
-        </StackPanel> -->
 
         <!-- Пароль -->
         <StackPanel Grid.Row="2" Margin="0,0,0,10">

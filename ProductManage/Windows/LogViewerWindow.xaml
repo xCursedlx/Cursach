@@ -18,7 +18,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
             <TextBlock Text="Фильтр:" VerticalAlignment="Center" Margin="0,0,5,0"/>
             <TextBox Width="300" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Content="Обновить" Margin="10,0,0,0" Width="100" Command="{Binding RefreshCommand}" />
+            <Button Content="Обновить" Margin="10,0,0,0" Width="100" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding RefreshCommand}" />
         </StackPanel>
 
         <!-- Список логов -->
